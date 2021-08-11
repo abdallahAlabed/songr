@@ -1,22 +1,28 @@
 package com.example.songr.models;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import javax.persistence.Id;
-import javax.persistence.Entity;
+
+
+import javax.persistence.*;
+import java.util.List;
+
 @Entity
 public class Album {
+
     private int id ;
     private String title;
     private String artist;
-    private int songCount;
+    private Integer songId;
     private int length;
     private String imageUrl;
-    public Album() {
+    private List<Song> songs;
+
+    public Album( ) {
+
     }
 
-    public Album(String title, String artist, int songCount, int length, String imageUrl) {
+    public Album( String title, String artist, Integer songId, int length, String imageUrl) {
         this.title = title;
         this.artist = artist;
-        this.songCount = songCount;
+        this.songId = songId;
         this.length = length;
         this.imageUrl = imageUrl;
     }
@@ -26,11 +32,9 @@ public class Album {
         return id;
     }
 
-
     public void setId(int id) {
         this.id = id;
     }
-
 
     public String getTitle() {
         return title;
@@ -48,12 +52,12 @@ public class Album {
         this.artist = artist;
     }
 
-    public int getSongCount() {
-        return songCount;
+    public Integer getSongId() {
+        return songId;
     }
 
-    public void setSongCount(int songCount) {
-        this.songCount = songCount;
+    public void setSongId(Integer songId) {
+        this.songId = songId;
     }
 
     public int getLength() {
@@ -71,10 +75,14 @@ public class Album {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
-    @Override
-    public String toString() {
-        return "Album{" + "title='" + this.getTitle() + '\'' + ", artist='" + this.getArtist() + '\'' + ", songCount=" + this.getSongCount() + ", " +
-                "lengthInSec=" + this.getLength() + ", imageUrl='" + this.getImageUrl() + '\'' + '}';
+    @OneToMany(mappedBy = "album")
+    public List<Song> getSongs() {
+        return songs;
     }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
+    }
+
+
 }
