@@ -22,7 +22,8 @@
         <p>title: <span th:text="${album.title}"></span></p>
         <p>artist: <span th:text="${album.artist}"></span></p>
         <p>length: <span th:text="${album.length}"></span></p>
-        <p>imageUrl: <a th:href="${album.imageUrl}" target="_blank">song link</a></p>
+        <p>imageUrl: </p>
+        <img th:href="${album.imageUrl}" />
     </div>
 
 </body>
